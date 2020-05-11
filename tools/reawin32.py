@@ -34,6 +34,7 @@ def mouse_click(handle,winx,winy):
 
 #上传文件
 def send_file(handle,file_path,title):
+
     mouse_click(handle, 124, 540)
     time.sleep(2)
     # 一级顶层窗口，此处title为上传窗口名称，浏览器不一样上传窗口名称不一样
