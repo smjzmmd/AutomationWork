@@ -52,14 +52,24 @@ def qq_announcement(handle,str):
     rea.mouse_click(handle, 620, 500) # 点击发布
     print("公告发布完成！\n")
 
+def send_file(handle):
+    rea.mouse_click(handle, 124, 520)
+    time.sleep(0.5)
+    open_win=win32gui.FindWindow(None,"打开")
+    win_url=win32gui.FindWindowEx(open_win,0,"ToolbarWindow32",None)
+    print(win_url)
+    win32gui.SendMessage(win_url,win32con.WM_CHAR,"桌面",0)
+
 def start_sending(IpClassName,IpWindowName,str):
     qqw = win32gui.FindWindow(IpClassName, IpWindowName)  # 找到qq窗口
 
     if qqw != 0:
         print("找到窗口:{},开始！".format(qqw))
         win32gui.SetForegroundWindow(qqw)  # 获得焦点
-        # win32gui.SetWindowPos(qqw, win32con.HWND_TOPMOST, left, top, 790, 650, win32con.SWP_SHOWWINDOW)  # 调整窗口 坐标，大小
-        qqwin_send(qqw, str)
-        qq_announcement(qqw, str)
+        left, top, right, bottom = win32gui.GetWindowRect(qqw)
+        win32gui.SetWindowPos(qqw, None, left, top, 790, 650, win32con.SWP_SHOWWINDOW)  # 调整窗口 坐标，大小
+        # qqwin_send(qqw, str)
+        # qq_announcement(qqw, str)
+        send_file(qqw)
     else:
         print("未找到窗口")
