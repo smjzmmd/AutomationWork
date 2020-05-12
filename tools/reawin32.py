@@ -33,9 +33,8 @@ def mouse_click(handle,winx,winy):
     win32api.SendMessage(handle, win32con.WM_LBUTTONUP, win32con.MK_LBUTTON, long_position)
 
 #上传文件
-def send_file(handle,file_path,title):
+def send_file(file_path,title):
 
-    mouse_click(handle, 124, 540)
     time.sleep(2)
     # 一级顶层窗口，此处title为上传窗口名称，浏览器不一样上传窗口名称不一样
     dialog = win32gui.FindWindow("#32770",title)

@@ -5,6 +5,11 @@ import time
 
 import tools.reawin32 as rea
 
+IpClassName="TXGuiFoundation"
+IpWindowName="个人测试"
+
+
+
 #QQ发消息
 def qqwin_send(handle,str):
     print("开始发送消息。。。\n")
@@ -23,7 +28,7 @@ def qqwin_send(handle,str):
     win32gui.SendMessage(handle, win32con.WM_KEYUP, win32con.VK_SHIFT, 0)
     rea.key_enter(handle)
 
-    # time.sleep(0.5)
+    time.sleep(0.5)
     rea.key_enter(handle)
     print("消息发送完成！\n")
 
@@ -55,7 +60,7 @@ def qq_announcement(handle,str):
 
 
 
-def start_sending(IpClassName,IpWindowName,str,filepath):
+def start_sending(version_name,file_path):
     qqw = win32gui.FindWindow(IpClassName, IpWindowName)  # 找到qq窗口
 
     if qqw != 0:
@@ -63,8 +68,15 @@ def start_sending(IpClassName,IpWindowName,str,filepath):
         win32gui.SetForegroundWindow(qqw)  # 获得焦点
         left, top, right, bottom = win32gui.GetWindowRect(qqw)
         win32gui.SetWindowPos(qqw, None, left, top, 790, 650, win32con.SWP_SHOWWINDOW)  # 调整窗口 坐标，大小
-        # qqwin_send(qqw, str)
-        # qq_announcement(qqw, str)
-        rea.send_file(qqw,filepath,"打开")
+
+        qqwin_send(qqw, version_name)
+
+        time.sleep(1)
+        rea.mouse_click(qqw, 124, 540)
+        rea.send_file(file_path, "打开")
+
+        time.sleep(1)
+        qq_announcement(qqw, version_name)
+        time.sleep(3)
     else:
         print("未找到窗口")
