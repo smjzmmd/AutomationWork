@@ -1,10 +1,12 @@
 import time
 from selenium.webdriver.common.keys import Keys
 
-def apkStart(driver,apk_url,url_list,add_text):
-    time.sleep(3)
+def apkStart(driver,apk_url,apk_title,url_list,add_text):
+    print("更新APK！！！！！！！！！")
+    time.sleep(5)
     newwindow = 'window.open("{}")'.format(apk_url)
     driver.execute_script(newwindow)
+    driver.switch_to_window(driver.window_handles[2])
     time.sleep(3)
 
     # # 点击 编辑
@@ -15,7 +17,7 @@ def apkStart(driver,apk_url,url_list,add_text):
     bbs_title = driver.find_element_by_xpath('//input[@name="subject"]')
     bbs_title.clear()
     time.sleep(0.5)
-    bbs_title.send_keys("洛汗M外掛-洛汗M神手{}版收費版（可免費試用）".format(time.strftime("%m-%d", time.localtime())))
+    bbs_title.send_keys(apk_title)
 
     # font的文本
     driver.switch_to.frame("e_iframe")

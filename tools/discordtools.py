@@ -15,8 +15,6 @@ def discord_send(version_name,MEGA_path):
     discord=win32gui.FindWindow(IpClassName,None)
     s_discord=win32gui.FindWindowEx(discord,None,s_IpClassName,None)
 
-    print("找到窗口--父：{}，子：{}".format(discord,s_discord))
-
     win32gui.SetForegroundWindow(s_discord)  # 获得焦点
     rea.setText("{0}\n{1}".format(version_name, MEGA_path))
 

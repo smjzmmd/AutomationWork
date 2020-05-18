@@ -6,13 +6,10 @@ import time
 import tools.reawin32 as rea
 
 IpClassName="TXGuiFoundation"
-IpWindowName="个人测试"
-
-
 
 #QQ发消息
 def qqwin_send(handle,str):
-    print("开始发送消息。。。\n")
+    print("开始发送消息。。。")
     #设置剪贴板
     rea.setText(str)
     rea.mouse_click(handle,150,600)
@@ -30,11 +27,11 @@ def qqwin_send(handle,str):
 
     time.sleep(0.5)
     rea.key_enter(handle)
-    print("消息发送完成！\n")
+    print("消息发送完成！")
 
 #发布公告
 def qq_announcement(handle,str):
-    print("开始发布公告。。。\n")
+    print("开始发布公告。。。")
     # 点击公告
     rea.mouse_click(handle,96,80)
     time.sleep(2.5)
@@ -55,28 +52,29 @@ def qq_announcement(handle,str):
 
     time.sleep(0.5)
     rea.mouse_click(handle, 620, 500) # 点击发布
-    print("公告发布完成！\n")
+    print("公告发布完成！")
 
 
-
-
-def start_sending(version_name,file_path):
-    qqw = win32gui.FindWindow(IpClassName, IpWindowName)  # 找到qq窗口
+def start_sending(qq_text,file_path,qq_q_name):
+    print("开始QQ发布版本！！！！！！！！！！！！")
+    time.sleep(5)
+    qqw = win32gui.FindWindow(IpClassName, qq_q_name)  # 找到qq窗口
 
     if qqw != 0:
-        print("找到窗口:{},开始！".format(qqw))
+
         win32gui.SetForegroundWindow(qqw)  # 获得焦点
         left, top, right, bottom = win32gui.GetWindowRect(qqw)
         win32gui.SetWindowPos(qqw, None, left, top, 790, 650, win32con.SWP_SHOWWINDOW)  # 调整窗口 坐标，大小
 
-        qqwin_send(qqw, version_name)
+        qqwin_send(qqw, qq_text)
 
         time.sleep(1)
         rea.mouse_click(qqw, 124, 540)
         rea.send_file(file_path, "打开")
 
         time.sleep(1)
-        qq_announcement(qqw, version_name)
+        qq_announcement(qqw, qq_text)
         time.sleep(3)
+        print("QQ发布完成")
     else:
         print("未找到窗口")

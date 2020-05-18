@@ -1,10 +1,13 @@
 import time
 from selenium.webdriver.common.keys import Keys
 
-def bbsStart(driver,bbs_url,url_list,add_text):
-    time.sleep(3)
+def bbsStart(driver,bbs_url,bbs_title,url_list,add_text):
+    print("更新神手论坛！！！！！！！！！")
+    time.sleep(5)
     newwindow = 'window.open("{}")'.format(bbs_url)
     driver.execute_script(newwindow)
+    driver.switch_to_window(driver.window_handles[1])
+    # driver.get(bbs_url)
     time.sleep(3)
 
     # # 点击 编辑
@@ -12,10 +15,10 @@ def bbsStart(driver,bbs_url,url_list,add_text):
 
     # 修改標題日期
     time.sleep(3)
-    bbs_title = driver.find_element_by_xpath('//input[@name="title"]')
-    bbs_title.clear()
+    bbs_ti = driver.find_element_by_xpath('//input[@name="title"]')
+    bbs_ti.clear()
     time.sleep(0.5)
-    bbs_title.send_keys("洛汗M神手輔助外掛{}收費版下載（可免費試用）".format(time.strftime("%m-%d", time.localtime())))
+    bbs_ti.send_keys(bbs_title)
 
     number=1
     for x in url_list:

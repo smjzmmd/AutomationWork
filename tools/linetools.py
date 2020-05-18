@@ -7,9 +7,10 @@ IpClassName="Qt5QWindowIcon"
 IpWindowName="LINE"
 
 def line_send(version_name,file_path):
-
+    print("开始line发布版本！！！！！！！！！！")
+    time.sleep(5)
     line=win32gui.FindWindow(IpClassName,IpWindowName)
-    print("找到line窗口。。。",line)
+
     left, top, right, bottom=win32gui.GetWindowRect(line)
     win32gui.SetForegroundWindow(line)
     win32gui.SetWindowPos(line, None, left, top, 730, 600, win32con.SWP_SHOWWINDOW)
