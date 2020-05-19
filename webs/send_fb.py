@@ -19,7 +19,7 @@ def fbStart(driver,fb_url,fideo_file,fb_title,fb_text):
     ActionChains(driver).click(ele_file).perform()
     time.sleep(3)
     rea.send_file(fideo_file,'打开')
-    time.sleep(3)
+    time.sleep(10)
     driver.find_element_by_xpath('//input[@placeholder="在這裡為你的影片新增標題……"]').send_keys(fb_title)
     driver.find_element_by_xpath('//br[@data-text="true"]').send_keys(fb_text)
 
