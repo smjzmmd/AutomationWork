@@ -1,4 +1,6 @@
 import time
+
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 
 def apkStart(driver,apk_url,apk_title,url_list,add_text):
@@ -10,7 +12,15 @@ def apkStart(driver,apk_url,apk_title,url_list,add_text):
     time.sleep(3)
 
     # # 点击 编辑
-    driver.find_element_by_xpath('//a[@class="editp"]').click()
+    while True:
+        try:
+            print("点击编辑。")
+            driver.find_element_by_xpath('//a[@class="editp"]').click()
+            break
+        except NoSuchElementException:
+            print("点击编辑：失败！5秒后重新点击")
+            time.sleep(6)
+
 
     # 修改標題日期
     time.sleep(3)
@@ -48,7 +58,7 @@ def apkStart(driver,apk_url,apk_title,url_list,add_text):
 
     # 追加更新文本
     driver.switch_to.frame('e_iframe')
-    driver.find_element_by_xpath("//font[text()='洛汗M神手更新內容:']").send_keys(add_text+"\n")
+    driver.find_element_by_xpath("//font[text()='洛汗M神手更新內容:']").send_keys(add_text)
     driver.switch_to.default_content()
 
 

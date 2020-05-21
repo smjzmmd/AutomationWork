@@ -11,14 +11,14 @@ import webs.send_apk as apk
 import webs.send_fb as fb
 
 '''---------------------------------------*****修改这里******-------------------------------------------------------'''
-# 版本号   格式  ：  时间 + 版本号
+# 版本号格式  ：  时间 + 版本号
 tim=time.strftime("%m-%d", time.localtime())+"-2"
 # 新增内容
 at='''1、测试
 2、測試'''
 # FB视屏地址
 fideo_file='F:\OneDrive\洛汗相關\裝備合成.mp4'
-#新版神手下载地址
+# 本地新版神手地址
 file_path="F:\zzz\\Desktop\\aa.txt"
 #QQ群名
 qq_q_name="个人测试"
@@ -67,7 +67,10 @@ qq_text='洛汗M神手'+tim+'版:\n'+at+'\n'
 
 
 if __name__=="__main__":
-
+    for x in (5,4,3,2,1,0):
+        print(x)
+        time.sleep(1)
+    print("开始！！！")
     qqsend.start_sending(qq_text,file_path,qq_q_name)
     dis.discord_send(qq_text,url_01)
     lin.line_send(qq_text,file_path)
@@ -79,4 +82,5 @@ if __name__=="__main__":
     bbs.bbsStart(driver,bbs_url,bbs_title,url_list,add_text)
     apk.apkStart(driver,apk_url,apk_title,url_list,add_text)
     fb.fbStart(driver,fb_url,fideo_file,fb_title,fb_text)
+
 
